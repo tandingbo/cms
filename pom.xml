@@ -12,10 +12,14 @@
         <mybatis.version>3.3.0</mybatis.version>
         <mybatis-spring.version>1.2.3</mybatis-spring.version>
         <http.version>4.5.1</http.version>
+        <!--alibaba-->
         <fastjson.version>1.2.7</fastjson.version>
+        <druid.version>1.0.16</druid.version>
+        <!--数据存储-->
         <mysql.version>5.1.38</mysql.version>
         <jedis.version>2.8.0</jedis.version>
         <mongodb.version>3.2.1</mongodb.version>
+        <!--日志-->
         <slf4j.version>1.7.1</slf4j.version>
     </properties>
 
@@ -153,7 +157,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
-            <version>1.0.16</version>
+            <version>${druid.version}</version>
         </dependency>
 
         <dependency>
