@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 public class SysLogInterceptors extends CommonInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
+        System.out.println(httpServletRequest.getRequestURL());
         return false;
     }
 

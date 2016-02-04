@@ -31,6 +31,8 @@
 
     <!--配置拦截器, 多个拦截器,顺序执行 -->
     <mvc:interceptors>
+        <!-- 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 -->
+        <bean class="com.tanbobo.cms.base.common.interceptors.WebInterceptor"/>
         <mvc:interceptor>
             <!-- 匹配的是url路径  -->
             <mvc:mapping path="/"/>
