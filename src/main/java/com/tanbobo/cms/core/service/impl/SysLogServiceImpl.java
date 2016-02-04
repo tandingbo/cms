@@ -17,6 +17,6 @@ public class SysLogServiceImpl implements ISysLogService {
 
     @Override
     public void save(SysLog entity) {
-        System.out.println(entity.getAccessIp());
+        sysLogDao.save(entity);
     }
 }
