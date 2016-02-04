@@ -12,4 +12,9 @@ public class BaseConstant {
      * 否(int)
      */
     public static final int NO = 0;
+
+    /**
+     * 日志类型-访问系统请求日志信息
+     */
+    public static final String LOG_ACCESS_SYSTEM_TYPE = "CLIENT_ACCESS_SYSTEM_LOG";
 }

@@ -1,6 +1,7 @@
 package com.tanbobo.cms.core.service.impl;
 
 import com.tanbobo.cms.core.dao.ISysLogDao;
+import com.tanbobo.cms.core.entity.SysLog;
 import com.tanbobo.cms.core.service.ISysLogService;
 import org.springframework.stereotype.Service;
 
@@ -13,4 +14,9 @@ import javax.annotation.Resource;
 public class SysLogServiceImpl implements ISysLogService {
     @Resource
     private ISysLogDao sysLogDao;
+
+    @Override
+    public void save(SysLog entity) {
+        System.out.println(entity.getAccessIp());
+    }
 }

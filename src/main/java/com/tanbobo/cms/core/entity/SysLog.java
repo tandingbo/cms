@@ -2,6 +2,8 @@ package com.tanbobo.cms.core.entity;
 
 import com.tanbobo.cms.base.entity.BaseEntity;
 
+import java.util.Date;
+
 /**
  * 日志
  */
@@ -31,7 +33,7 @@ public class SysLog extends BaseEntity<SysLog> {
     /**
      * 访问时间
      */
-    private String accessTime;
+    private Date accessTime;
 
     public String getUuid() {
         return uuid;
@@ -73,11 +75,11 @@ public class SysLog extends BaseEntity<SysLog> {
         this.accessUrl = accessUrl;
     }
 
-    public String getAccessTime() {
+    public Date getAccessTime() {
         return accessTime;
     }
 
-    public void setAccessTime(String accessTime) {
+    public void setAccessTime(Date accessTime) {
         this.accessTime = accessTime;
     }
 }
