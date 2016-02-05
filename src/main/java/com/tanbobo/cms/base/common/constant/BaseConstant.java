@@ -5,6 +5,10 @@ package com.tanbobo.cms.base.common.constant;
  */
 public class BaseConstant {
     /**
+     * 用户session
+     */
+    public static final String SESSION_NAME_LOGIN_RESULT = "CMS_ACCOUNT_SESSION";
+    /**
      * 是(int)
      */
     public static final int YES = 1;

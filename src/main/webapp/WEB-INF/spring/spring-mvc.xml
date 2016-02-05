@@ -49,7 +49,7 @@
                 <prop key="time_format">HH:mm:ss</prop>
                 <prop key="number_format">#.##</prop>
                 <prop key="whitespace_stripping">true</prop>
-                <prop key="auto_import">resources/common/cms.ftl as c</prop>
+                <!--<prop key="auto_import">resources/common/cms.ftl as c</prop>-->
             </props>
         </property>
     </bean>
@@ -71,7 +71,9 @@
         <mvc:interceptor>
             <!-- 匹配的是url路径  -->
             <mvc:mapping path="/**"/>
-            <bean class="com.tanbobo.cms.core.common.interceptors.SysLogInterceptors"/>
+            <!-- 需排除拦截的地址 -->
+            <mvc:exclude-mapping path="/login"/>
+            <bean class="com.tanbobo.cms.core.common.interceptors.SystemInterceptor"/>
         </mvc:interceptor>
         <!-- 当设置多个拦截器时，先按顺序调用preHandle方法，然后逆序调用每个拦截器的postHandle和afterCompletion方法 -->
     </mvc:interceptors>

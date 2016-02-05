@@ -18,9 +18,14 @@ public class SysAccountController extends BaseController {
     private ISysAccountService sysAccountService;
 
     @RequestMapping(value = "/account", method = RequestMethod.GET)
-    public String accountPage(){
+    public String accountPage() {
 
         return "";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String loginPage() {
+        return "/login";
     }
 
 }
