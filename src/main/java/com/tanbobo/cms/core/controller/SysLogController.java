@@ -23,6 +23,6 @@ public class SysLogController extends BaseController {
     @RequestMapping(value = "/log", method = RequestMethod.GET)
     public String logPage() {
         logger.info("logback 成功了");
-        return "index";
+        return "public/index";
     }
 }

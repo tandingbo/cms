@@ -23,9 +23,9 @@ public class SysAccountController extends BaseController {
         return "";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/login")
     public String loginPage() {
-        return "/login";
+        return "public/login";
     }
 
 }

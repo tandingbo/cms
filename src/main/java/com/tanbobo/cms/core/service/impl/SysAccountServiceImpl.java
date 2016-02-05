@@ -1,6 +1,7 @@
 package com.tanbobo.cms.core.service.impl;
 
 import com.tanbobo.cms.core.dao.ISysAccountDao;
+import com.tanbobo.cms.core.entity.SysAccount;
 import com.tanbobo.cms.core.service.ISysAccountService;
 import org.springframework.stereotype.Service;
 
@@ -13,4 +14,9 @@ import javax.annotation.Resource;
 public class SysAccountServiceImpl implements ISysAccountService {
     @Resource
     private ISysAccountDao sysAccountDao;
+
+    @Override
+    public SysAccount findById(String userId) {
+        return null;
+    }
 }

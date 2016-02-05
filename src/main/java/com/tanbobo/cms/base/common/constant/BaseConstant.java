@@ -7,7 +7,7 @@ public class BaseConstant {
     /**
      * 用户session
      */
-    public static final String SESSION_NAME_LOGIN_RESULT = "CMS_ACCOUNT_SESSION";
+    public static final String AUTHEN_TOKEN_SESSION_NAME = "AUTHENTOKENSESSION";
     /**
      * 是(int)
      */
