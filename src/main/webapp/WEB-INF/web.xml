@@ -4,6 +4,12 @@
          version="3.0">
     <display-name>Cipher Management System</display-name>
 
+    <!-- 区分项目名称，防止默认重名 -->
+    <context-param>
+        <param-name>webAppRootKey</param-name>
+        <param-value>maven.cms.root</param-value>
+    </context-param>
+
     <!--  Spring 上下文参数 加载Spring配置文件 -->
     <context-param>
         <param-name>contextConfigLocation</param-name>

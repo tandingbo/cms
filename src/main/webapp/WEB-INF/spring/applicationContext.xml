@@ -11,4 +11,9 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
+    <!-- 用于持有ApplicationContext,可以使用SpringContextHolder.getBean('xxxx')的静态方法得到spring bean对象 -->
+    <!--<bean class="com.xxl.app.base.SpringContextHolder" lazy-init="false" />-->
+
+    <!-- 引入配置文件 -->
+    <!--<context:property-placeholder location="classpath:jdbc.properties"/>-->
 </beans>
