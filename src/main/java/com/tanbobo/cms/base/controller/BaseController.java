@@ -10,9 +10,11 @@ import org.springframework.util.Assert;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,8 +32,43 @@ public class BaseController {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
     }
 
+    protected HttpServletRequest request;
+    protected HttpServletResponse response;
+    protected HttpSession session;
+
+    /**
+     * modelAttribut作用说明:
+     * 1.放置在方法的形参上表示引用Model中的数据
+     * 2.放置在方法上表示请示该类的每个action前都会首先执行它，也可以将一些准备数据的操作放置在该方法里面
+     * @param request
+     * @param response
+     */
+    @ModelAttribute
+    public void setReqAndRes(HttpServletRequest request, HttpServletResponse response) {
+        this.request = request;
+        this.response = response;
+        this.session = request.getSession();
+    }
+
+    //① 获取保存在Session中的用户对象
+    protected AuthenToken getSessionUser() {
+        return (AuthenToken) session.getAttribute(BaseConstant.AUTHEN_TOKEN_SESSION_NAME);
+    }
+
+    //②将用户对象保存到Session中
+    protected void setSessionUser(AuthenToken token) {
+        session.setAttribute(BaseConstant.AUTHEN_TOKEN_SESSION_NAME, token);
+    }
+
+    //③ 获取基于应用程序的url绝对路径
+    public final String getAppbaseUrl(String url) {
+        Assert.hasLength(url, "url不能为空");
+        Assert.isTrue(url.startsWith("/"), "必须以/打头");
+        return request.getContextPath() + url;
+    }
+
     @ExceptionHandler
-    public String exception(HttpServletRequest request, HttpServletResponse response, Exception e) {
+    public String exception(Exception e) {
         logger.error(this.getClass() + " is errory, errorType=" + e.getClass(), e);
         //如果是json格式的ajax请求
         if (request.getHeader("accept").indexOf("application/json") > -1
@@ -52,20 +89,5 @@ public class BaseController {
         }
     }
 
-    //① 获取保存在Session中的用户对象
-    protected AuthenToken getSessionUser(HttpServletRequest request) {
-        return (AuthenToken) request.getSession().getAttribute(BaseConstant.AUTHEN_TOKEN_SESSION_NAME);
-    }
 
-    //②将用户对象保存到Session中
-    protected void setSessionUser(HttpServletRequest request, AuthenToken token) {
-        request.getSession().setAttribute(BaseConstant.AUTHEN_TOKEN_SESSION_NAME, token);
-    }
-
-    //③ 获取基于应用程序的url绝对路径
-    public final String getAppbaseUrl(HttpServletRequest request, String url) {
-        Assert.hasLength(url, "url不能为空");
-        Assert.isTrue(url.startsWith("/"), "必须以/打头");
-        return request.getContextPath() + url;
-    }
 }

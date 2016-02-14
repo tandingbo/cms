@@ -22,7 +22,9 @@ public class SysLogController extends BaseController {
 
     @RequestMapping(value = "/log", method = RequestMethod.GET)
     public String logPage() {
-        logger.info("logback 成功了");
+        session.setAttribute("t", "tanbobo");
+//        logger.info("logback 成功了");
+        System.out.println("session value:"+session.getAttribute("t"));
         return "public/index";
     }
 }
