@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 
 /**
  * 日志
@@ -22,9 +23,13 @@ public class SysLogController extends BaseController {
 
     @RequestMapping(value = "/log", method = RequestMethod.GET)
     public String logPage() {
-        session.setAttribute("t", "tanbobo");
-//        logger.info("logback 成功了");
-        System.out.println("session value:"+session.getAttribute("t"));
+        logger.info("logback 成功了");
         return "public/index";
+    }
+
+    @RequestMapping(value = "/logApi")
+    public void apiTest() throws IOException {
+//        write(EMPTY_ENTITY);
+        write(getFailed("返回错误信息"));
     }
 }

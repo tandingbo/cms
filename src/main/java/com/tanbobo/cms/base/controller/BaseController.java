@@ -4,6 +4,7 @@ import ch.qos.logback.classic.Logger;
 import com.tanbobo.cms.base.common.constant.BaseConstant;
 import com.tanbobo.cms.base.entity.BaseEntity;
 import com.tanbobo.cms.core.entity.AuthenToken;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.util.Assert;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.Writer;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -89,5 +92,51 @@ public class BaseController {
         }
     }
 
+    /**
+     * 上下文
+     * @return
+     */
+    public String getContextPath(){
+        return request.getContextPath();
+    }
 
+    /**
+     * 返回空数据
+     */
+    protected static final String EMPTY_ARRAY = "{\"status\": 1, \"data\": []}";
+    protected static final String EMPTY_ENTITY = "{\"status\": 1, \"data\": {}}";
+    protected static final String EMPTY_STRING = "{\"status\": 1, \"data\": \"\"}";
+
+    /**
+     * 往客户端写入数据
+     * @param str
+     * @throws IOException
+     */
+    protected void write(String str) throws IOException{
+        response.setCharacterEncoding(request.getCharacterEncoding());
+        response.setContentType("text/html");
+        Writer writer = response.getWriter();
+        try{
+            if(StringUtils.isNoneBlank(str)){
+                writer.write(str);
+            }
+        } finally {
+            writer.flush();
+            writer.close();
+        }
+    }
+
+    /**
+     * 错误信息
+     * @param failed
+     * @return
+     */
+    protected String getFailed(String... failed) {
+        StringBuilder builder = new StringBuilder("{\"status\": 0, \"failed\": \"");
+        for (String str : failed) {
+            builder.append(str);
+        }
+        builder.append("\"}");
+        return builder.toString();
+    }
 }
