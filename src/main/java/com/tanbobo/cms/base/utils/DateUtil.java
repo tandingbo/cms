@@ -12,7 +12,7 @@ public class DateUtil {
     /**
      * 默认格式
      */
-    private static final String DEFULT_FORMAT_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    private static final String DEFAULT_FORMAT_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
     /**
      * 日期转字符串
@@ -20,15 +20,12 @@ public class DateUtil {
      * @return
      */
     public static String dateFormat(Date date) {
-        return dateFormat(date, DEFULT_FORMAT_FORMAT);
+        return dateFormat(date, DEFAULT_FORMAT_FORMAT);
     }
 
     public static String dateFormat(Date date, String format){
         if (date != null){
-            SimpleDateFormat sdf = new SimpleDateFormat(DEFULT_FORMAT_FORMAT);
-            if (StringUtils.isBlank(format)){
-                sdf = new SimpleDateFormat(format);
-            }
+            SimpleDateFormat sdf = new SimpleDateFormat(format);
             return sdf.format(date);
         }
         return "";
